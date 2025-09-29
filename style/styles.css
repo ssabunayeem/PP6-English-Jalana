@@ -2,16 +2,12 @@
 
 /* google font */
 
-.poppins-regular {
+* {
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
 }
 
-.hind-siliguri-regular {
+.font-bangla {
     font-family: "Hind Siliguri", sans-serif;
-    font-weight: 400;
-    font-style: normal;
 }
 
 /* common style */
