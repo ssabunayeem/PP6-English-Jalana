@@ -14,24 +14,41 @@ const displayLesson = (lessons) => {
     for (let lesson of lessons) {
         const btnDiv = document.createElement('div');
         btnDiv.innerHTML = `
-        <button onclick = "loadWord(${lesson.level_no})"  class="btn btn-outline btn-primary">
+        <button id="lesson-btn-${lesson.level_no}" onclick = "loadWord(${lesson.level_no})"  class="btn btn-outline btn-primary lesson-btn">
         <i class="fa-solid fa-book-open"></i> Lesson - ${lesson.level_no}</button>
         `
         lessonContainer.appendChild(btnDiv);
     }
+
 
 }
 
 loadLesson();
 
 
-// ---------------------------------- load Lesson words ---------------------------------------
 
+// ---------------------------------- load words ---------------------------------------
+
+
+// highlight selected lesson button  (remove daisyUI outline button and add primary filled button )
+const removeBtnBackground = () => {
+    const lessonBtns = document.querySelectorAll(".lesson-btn");
+    lessonBtns.forEach(btn => {
+        btn.classList.add("btn-outline")
+    });
+
+}
+
+// load word
 const loadWord = (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayWord(data.data))
+        .then(data => {
+            removeBtnBackground();
+            document.getElementById(`lesson-btn-${id}`).classList.remove("btn-outline");
+            displayWord(data.data)
+        })
 }
 
 
@@ -73,7 +90,7 @@ const displayWord = (words) => {
                  </div>
 
                  <div class="card-actions justify-between mx-10 my-5">
-                         <button class="btn bg-blue-50 hover:bg-blue-200"><i class="fa-solid text-xl fa-circle-info"></i>
+                         <button onclick="loadWordDetail(${word.id})" class="btn bg-blue-50 hover:bg-blue-200"><i class="fa-solid text-xl fa-circle-info"></i>
                          </button>
                       <button class="btn bg-blue-50 hover:bg-blue-200"><i class="fa-solid text-xl fa-volume-high"></i>
                       </button>
@@ -84,6 +101,42 @@ const displayWord = (words) => {
          `;
         wordContainer.append(card);
     });
+
+}
+
+
+// ----------------------------------------load Word Detail --------------------------------
+
+const loadWordDetail = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayWordDetails(data.data);
+}
+
+const displayWordDetails = (data) => {
+    document.getElementById("details-container").innerHTML = `
+     <div>
+                        <h2 class="text-3xl font-bold">${data.word} (<i class="fa-solid fa-microphone-lines"></i>) : ${data.pronunciation}</h2>
+                    </div>
+                    <div class = "space-y-2">
+                        <h2 class="text-xl font-bold">Meaning</h2>
+                        <p>${data.meaning}</p>
+                    </div>
+                    <div class = "space-y-2">
+                        <h2 class="text-xl font-bold">Example</h2>
+                        <p>${data.sentence}</p>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold mb-2">সমার্থক শব্দ গুলো</h2>
+                        <span class="btn">${data.synonyms[0]}</span>
+                        <span class="btn">${data.synonyms[1]}</span>
+                        <span class="btn">${data.synonyms[2]}</span>
+                    </div>
+    `;
+
+    // word_modal.showModal();       -> or use below way
+    document.getElementById("word_modal").showModal();
 
 
 

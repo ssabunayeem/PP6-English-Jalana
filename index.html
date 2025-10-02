@@ -125,10 +125,16 @@
     <!------------------------ main section ------------------------->
     <main>
         <!------------ vocabularies section ------------->
-        <section class="vocabularies text-center my-20">
+        <section class="vocabularies text-center mt-20">
             <h1 class="text-3xl md:text-5xl font-bold"> <span class="text-sky-500">Let's </span> Learn Vocabularies</h1>
             <div id="lesson-container" class="flex justify-center flex-wrap gap-5 my-10 px-5">
                 <!-- from API -->
+            </div>
+
+            <div>
+                <h2 id="lesson-title"
+                    class="btn btn-ghost text-3xl font-semibold text-center  text-blue-400 mx-auto w-1/3">
+                </h2>
             </div>
         </section>
 
@@ -139,21 +145,26 @@
                 <small class="font-bangla text-gray-500">আপনি এখনো কোন Lesson Select করেন নি</small>
                 <h3 class="text-3xl font-semibold font-bangla">একটি Lesson Select করুন।</h3>
             </div>
-
-            <!-- <div class="card bg-base-100  shadow-sm  py-5">
-                <div class="card-body items-center space-y-5">
-                    <h2 class="card-title">`${word.word}`</h2>
-                    <p>Meaning / Pronounciation</p>
-                    <h2 class="card-title font-bangla">`${word.meaning} / ${ word.pronunciation}`</h2>
-
-                    <div class="card-actions justify-between gap-80 mt-10">
-                        <button class="btn "><i class="fa-solid fa-circle-info"></i></button>
-                        <button class="btn "><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                </div>
-            </div> -->
-
         </section>
+
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="word_modal.showModal()">open modal</button> -->
+        <dialog id="word_modal" class="modal modal-bottom sm:modal-middle text-xl ">
+            <div class="modal-box max-w-1/3 p-10">
+
+                <div id="details-container" class="space-y-10 ">
+
+
+                </div>
+
+                <div class="modal-action justify-start mt-10">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn btn-primary text-lg">Complete Learning</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
 
 
     </main>
