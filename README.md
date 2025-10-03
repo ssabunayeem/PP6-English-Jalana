@@ -30,7 +30,7 @@ https://openapi.programming-hero.com/api/word/5
 https://openapi.programming-hero.com/api/words/all
 ```
 
-# Work To do
+# Featured Added
 
 ### 1. Show Levels on The UI
 
@@ -109,8 +109,6 @@ function pronounceWord(word) {
 }
 ```
 
-For More >> you can explore this implementation 👉 [https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ](https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ)
+For More >> you can explore this implementation 👉 [https://codepen.io](https://codepen.io)
 
 ---
-Bonus : How to create Private Repository for next assignments
-## Test Repo - :  https://classroom.github.com/a/Fgjib-lr
